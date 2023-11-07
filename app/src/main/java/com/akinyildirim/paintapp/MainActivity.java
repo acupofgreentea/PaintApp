@@ -3,11 +3,13 @@ package com.akinyildirim.paintapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -35,13 +37,24 @@ public class MainActivity extends AppCompatActivity {
     private ColorPickerDialog.Builder colorPickerDialog;
     private ColorPickerView colorPickerView;
 
-
+    private boolean keepSplashScreen = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                keepSplashScreen = false;
+            }
+        }, 2000);
+
+        splashScreen.setKeepOnScreenCondition(() -> keepSplashScreen);
 
         setContentView(binding.getRoot());
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AppCompat.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/blue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/palette</item>
+        <item name="postSplashScreenTheme">@style/Theme.PaintApp</item>
+        <item name="windowSplashScreenAnimationDuration">10000</item>
+        </style>
+</resources>
